@@ -1,0 +1,12 @@
+.footer {
+  text-align: center;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+
+  small {
+    color: var(--secondaryColor);
+    font-family: var(--codeFont);
+    font-size: 12px;
+    line-height: 1.5;
+  }
+}

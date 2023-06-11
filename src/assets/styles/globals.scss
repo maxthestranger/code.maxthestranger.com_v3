@@ -1,0 +1,490 @@
+// Custom.scss
+// Option B: Include parts of Bootstrap
+
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "bootstrap/scss/functions";
+
+// 2. Include any default variable overrides here
+
+// 3. Include remainder of required Bootstrap stylesheets (including any separate color mode stylesheets)
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+
+// 4. Include any default map overrides here
+
+// 5. Include remainder of required parts
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/root";
+
+// 6. Optionally include any other parts as needed
+@import "bootstrap/scss/utilities";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+@import "bootstrap/scss/images";
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/helpers";
+
+// 7. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
+@import "bootstrap/scss/utilities/api";
+
+// 8. Add additional custom code here
+
+@import "remixicon/fonts/remixicon.css";
+
+:root {
+  --bodyFont: "Biotif", sans-serif;
+  --headingFont: "Neuzeit Grotesk Bold", sans-serif;
+  --codeFont: "Fira Code", monospace;
+  --primaryColor: #f2f2f2;
+  --secondaryColor: #8f9ba8;
+  --backgroundColor: #08070b;
+  --commandColor: hsla(0, 0%, 100%, 0.05);
+  --hoverColor: #212024;
+  --hover2: rgb(114, 114, 114, 0.05);
+  --hover3: #8c8c8c1a;
+  --gradientDegree: 135deg;
+  --navHeightDesktop: 60px;
+  --navHeightMobile: 110px;
+  --borderRadius: 8px;
+  --duration: 0.2s;
+  --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+  --navy: #0a192f;
+  --darkSlate: #495670;
+  --background: #151417;
+  --comment: #6272a4;
+  --foreground: #f8f8f2;
+  --selection: #44475a;
+  --cyan: #80ffea;
+  --green: #8aff80;
+  --orange: #ffca80;
+  --pink: #ff80bf;
+  --purple: #9580ff;
+  --red: #ff9580;
+  --yellow: #ffff80;
+  --background-30: #282a3633;
+  --comment-30: #6272a433;
+  --foreground-30: #f8f8f233;
+  --selection-30: #44475a33;
+  --cyan-30: #80ffea33;
+  --green-30: #8aff80;
+  --orange-30: #ffca80;
+  --pink-30: #FF80BF3;
+  --purple-30: #9580ff;
+  --red-30: #ff9580;
+  --yellow-30: #ffff80;
+  --background-40: #282a3666;
+  --comment-40: #6272a466;
+  --foreground-40: #f8f8f266;
+  --selection-40: #44475a66;
+  --cyan-40: #80ffea66;
+  --green-40: #8aff80;
+  --orange-40: #ffca80;
+  --pink-40: #FF80BF6;
+  --purple-40: #9580ff;
+  --red-40: #ff9580;
+  --yellow-40: #ffff80;
+}
+
+/* ================ Resets ================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+//general
+html {
+  box-sizing: border-box;
+  width: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  background: var(--backgroundColor);
+  font-family: var(--bodyFont);
+}
+
+//scrollbar
+body::-webkit-scrollbar-track {
+  background: var(--navy);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--secondaryColor);
+  border: 3px solid var(--navy);
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar {
+  width: 12px;
+}
+
+//selection highlight
+::selection {
+  background-color: var(--orange);
+  -webkit-text-fill-color: var(--backgroundColor);
+  color: var(--backgroundColor);
+}
+
+/* ================ Element styling ================= */
+a {
+  display: inline-block;
+  text-decoration: none;
+  text-decoration-skip-ink: auto;
+  color: inherit;
+  position: relative;
+  transition: var(--transition);
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  border-radius: 0;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+  outline-offset: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+section {
+  margin: 0 auto;
+  padding: 100px 0;
+  max-width: 1000px;
+
+  @media (max-width: 768px) {
+    padding: 80px 0 !important;
+  }
+
+  @media (max-width: 480px) {
+    padding: 60px 0 !important;
+  }
+}
+
+.leo {
+  @media (prefers-reduced-motion: no-preference) {
+    height: 70px;
+    transform: translateY(0px);
+    background-color: rgba(10, 25, 47, 0.85);
+    box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+  }
+}
+
+/* ================ General Classes ================= */
+.wrapper {
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(100vh - 241px);
+  padding: 0;
+  line-height: 32px;
+
+  @media (min-width: 768px) {
+    margin-top: 100px;
+  }
+
+  //transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+  //transition: opacity 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.2s, transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.2s;
+}
+
+.post_content {
+  font-size: 16px;
+  line-height: 32px;
+  color: var(--secondaryColor);
+  background: var(--backgroundColor);
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  padding: 70px 0;
+  width: 100%;
+  max-width: 850px;
+
+  .item_list {
+    list-style: none;
+    margin: 10px 0 0;
+    padding: 0;
+  }
+
+  h1 {
+    font-family: var(--headingFont);
+    font-size: 48px;
+    line-height: 48px;
+    margin: 0 0 20px;
+    color: var(--primaryColor);
+  }
+
+  p {
+    margin: 20px 0;
+    color: var(--secondaryColor);
+  }
+
+  strong {
+    color: var(--primaryColor);
+    font-weight: 500;
+  }
+
+  h2 {
+    color: var(--primaryColor);
+    margin: 60px 0 0;
+    font-size: 24px;
+  }
+
+  a {
+    border-bottom: 1px solid var(--primaryColor);
+    color: var(--primaryColor);
+    text-decoration: none;
+    transition: opacity var(--duration) ease-in-out;
+    line-height: 22px;
+
+    &:hover {
+      color: var(--secondaryColor);
+    }
+  }
+
+  blockquote {
+    border-left: 4px solid var(--hoverColor);
+    color: var(--secondaryColor);
+    font-style: italic;
+    margin: 0;
+    padding-left: 20px;
+  }
+
+  .post-title {
+    text-align: center;
+    color: var(--primaryColor);
+    margin: 30px auto 0;
+    max-width: none;
+    font-size: 48px;
+    line-height: 60px;
+    overflow-wrap: break-word;
+
+    @media (min-width: 768px) {
+      margin-top: 0;
+    }
+  }
+
+  .post-subtitle {
+    color: var(--secondaryColor);
+    margin: 0 0 60px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+  }
+}
+
+.post-article {
+  padding-left: 2rem;
+  padding-right: 2rem;
+
+  @media screen and (max-width: 768px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  img {
+    border-radius: 8px;
+    min-width: 100%;
+    max-width: 100%;
+  }
+}
+
+.skills-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(140px, 200px));
+  gap: 0px 10px;
+  padding: 0px;
+  margin: 20px 0px 0px;
+  overflow: hidden;
+  list-style: none;
+  li {
+    position: relative;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    text-transform: capitalize;
+
+    &::before {
+      content: "▹";
+      position: absolute;
+      left: 0px;
+      color: var(--secondaryColor);
+    }
+  }
+}
+
+//title colors
+.gradient {
+  background-size: 100%;
+  -moz-text-fill-color: transparent;
+  -webkit-box-decoration-break: clone;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-pink-purple {
+  background-image: linear-gradient(
+    var(--gradientDegree),
+    var(--pink) 0,
+    var(--purple) 100%
+  );
+}
+
+.gradient-purple-cyan {
+  background-image: linear-gradient(
+    var(--gradientDegree),
+    var(--purple) 0,
+    var(--cyan) 100%
+  );
+}
+
+.gradient-cyan-green {
+  background-image: linear-gradient(
+    var(--gradientDegree),
+    var(--cyan) 0,
+    var(--green) 100%
+  );
+}
+
+.gradient-yellow-pink {
+  background-image: linear-gradient(
+    var(--gradientDegree),
+    var(--yellow) 0,
+    var(--pink) 100%
+  );
+}
+
+.gradient-blue-green {
+  background-image: linear-gradient(135deg, var(--purple) 0%, var(--cyan) 100%);
+}
+
+/* ================ Utility Classes ================= */
+.section-title {
+  max-width: 500px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 40px;
+  text-align: left;
+  display: block;
+}
+
+.section-title:before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 100%;
+  background: var(--primaryColor);
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.flex_between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 60px;
+  h2 {
+    margin: 0 !important;
+  }
+}
+
+.pl-40 {
+  padding-left: 40px;
+}
+
+.text_center {
+  text-align: center;
+}
+
+.pt_4 {
+  padding-top: 4rem;
+}
+
+.pb_4 {
+  padding-bottom: 4rem;
+}
+
+.grid {
+  list-style: none;
+  padding: 0px;
+  margin: 50px 0px 0px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 15px;
+  position: relative;
+
+  @media (max-width: 1080px) {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
+/* ================ Fonts ================= */
+
+@font-face {
+  font-family: "Neuzeit Grotesk Bold";
+  src: url("../fonts/NeuzeitGrotesk-Bold.woff2") format("woff2"),
+    url("../fonts/NeuzeitGrotesk-Bold.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Fira Code";
+  src: url("../fonts/FiraCode-Regular.woff2") format("woff2"),
+    url("../fonts/FiraCode-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Biotif";
+  src: url("../fonts/Biotif-Bold.woff2") format("woff2"),
+    url("../fonts/Biotif-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Biotif";
+  src: url("../fonts/Biotif-SemiBold.woff2") format("woff2"),
+    url("../fonts/Biotif-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Biotif";
+  src: url("../fonts/Biotif-Book.woff2") format("woff2"),
+    url("../fonts/Biotif-Book.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Biotif";
+  src: url("../fonts/Biotif-Regular.woff2") format("woff2"),
+    url("../fonts/Biotif-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Biotif";
+  src: url("../fonts/Biotif-RegularItalic.woff2") format("woff2"),
+    url("../fonts/Biotif-RegularItalic.woff") format("woff");
+  font-weight: normal;
+  font-style: italic;
+}
